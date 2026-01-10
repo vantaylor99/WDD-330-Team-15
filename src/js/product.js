@@ -5,7 +5,7 @@ const dataSource = new ProductData('tents');
 
 async function countItemsInCart() {
   if (getLocalStorage('itemsInCart') === null) {
-    setLocalStorage('itemsInCart', 1);
+    setLocalStorage('itemsInCart', 0);
   } else {
     return Number(getLocalStorage('itemsInCart'));
   }
