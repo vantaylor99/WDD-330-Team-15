@@ -1,5 +1,16 @@
 import { getLocalStorage, setLocalStorage } from './utils.mjs';
-import ProductData from './ProductData.mjs';
+import ProductData from './modules/ProductData.mjs';
+import { displayProduct } from './modules/DisplayProducts.mjs';
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get('category');
+  const productID = params.get('id');
+  displayProduct(category, productID);
+
+})
 
 const dataSource = new ProductData('tents');
 
@@ -28,3 +39,6 @@ async function addToCartHandler(e) {
 document
   .getElementById('addToCart')
   .addEventListener('click', addToCartHandler);
+
+
+
