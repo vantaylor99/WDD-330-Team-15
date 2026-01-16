@@ -54,7 +54,7 @@ export function displayProduct(product) {
     name.textContent = `${product.NameWithoutBrand}`;
 
     image.setAttribute('src', product.Image);
-    image.setAttribute('alt', `Image of the ${product.name}`);
+    image.setAttribute('alt', `Image of the ${product.Name}`);
 
     price.textContent = `${product.ListPrice}`;
     color.textContent = `${product.Colors[0].ColorName}`;
