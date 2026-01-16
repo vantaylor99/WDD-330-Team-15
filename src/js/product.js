@@ -6,8 +6,14 @@ import { getParam } from './utils.mjs';
 
 document.addEventListener('DOMContentLoaded', () => {
   const productID = getParam('id');
-  productDetails = new productDetails(category, productID);
+  const category = getParam('category');
+  const dataSource = new ProductData(category);
+
+  const product = new ProductDetails(productID, dataSource);
+
+  product.init();
 })
+
 
 const dataSource = new ProductData('tents');
 

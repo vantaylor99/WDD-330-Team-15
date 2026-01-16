@@ -1,6 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "../utils.mjs";
-import { displayProduct } from "./DisplayProducts.mjs";
-import ProductData from "./ProductData.mjs";
+import { getLocalStorage, getParam, setLocalStorage } from "../utils.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
@@ -10,11 +8,12 @@ export default class ProductDetails {
     }
 
     async init() {
-        this.product = await this.dataSource.findProductById(this.productId);
+        this.product = await this.dataSource.findProductById(this.productId)
 
         this.renderProductDetails();
 
         document.getElementById('addToCart').addEventListener('click', this.addProductToCart.bind(this));
+
     }
 
     renderProductDetails() {
@@ -22,22 +21,23 @@ export default class ProductDetails {
     }
 
 
-    async addProductToCart(product) {
-        let itemsInCart = await countItemsInCart();
-        setLocalStorage(`customer-cart-item${itemsInCart}`, product);
+    async addProductToCart() {
+        const itemsInCart = countItemsInCart();
+        setLocalStorage(`customer-cart-item${itemsInCart}`, this.product);
         setLocalStorage('itemsInCart', itemsInCart + 1);
     }
 }
 
-async function countItemsInCart() {
+function countItemsInCart() {
+    const current = getLocalStorage("itemsInCart");
     if (getLocalStorage('itemsInCart') === null) {
         setLocalStorage('itemsInCart', 0);
-    } else {
-        return Number(getLocalStorage('itemsInCart'));
+        return 0;
     }
 
-    return Number(getLocalStorage('itemsInCart'));
+    return Number(current);
 }
+
 
 
 const brand = document.getElementById('productBrand');
@@ -49,10 +49,7 @@ const description = document.getElementById('productDescription');
 const button = document.getElementById('addToCart');
 
 
-async function displayProduct(category, id) {
-    const data = new ProductData(category);
-    const product = await data.findProductById(id)
-
+export function displayProduct(product) {
     brand.textContent = `${product.Brand.Name}`;
     name.textContent = `${product.NameWithoutBrand}`;
 
@@ -63,6 +60,6 @@ async function displayProduct(category, id) {
     color.textContent = `${product.Colors[0].ColorName}`;
     description.innerHTML = `${product.DescriptionHtmlSimple}`;
     button.dataset.id = product.Id;
-    button.dataset.category = category;
 
+    button.dataset.category = getParam('category');
 }
