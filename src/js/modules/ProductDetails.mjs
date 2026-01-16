@@ -29,6 +29,16 @@ export default class ProductDetails {
     }
 }
 
+async function countItemsInCart() {
+    if (getLocalStorage('itemsInCart') === null) {
+        setLocalStorage('itemsInCart', 0);
+    } else {
+        return Number(getLocalStorage('itemsInCart'));
+    }
+
+    return Number(getLocalStorage('itemsInCart'));
+}
+
 
 const brand = document.getElementById('productBrand');
 const name = document.getElementById('productName');
