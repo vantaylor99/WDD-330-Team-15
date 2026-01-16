@@ -13,7 +13,6 @@ const button = document.getElementById('addToCart');
 export async function displayProduct(category, id) {
     const data = new ProductData(category);
     const product = await data.findProductById(id)
-    console.log(product)
 
     brand.textContent = `${product.Brand.Name}`;
     name.textContent = `${product.NameWithoutBrand}`;
