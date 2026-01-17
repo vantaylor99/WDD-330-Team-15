@@ -1,4 +1,5 @@
 import { getLocalStorage, getParam, setLocalStorage } from "../utils.mjs";
+import { updateCartBadge } from "./cartCountBadge.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
@@ -12,7 +13,10 @@ export default class ProductDetails {
 
         this.renderProductDetails();
 
-        document.getElementById('addToCart').addEventListener('click', this.addProductToCart.bind(this));
+        document.getElementById("addToCart").addEventListener("click", () => {
+            this.addProductToCart();
+            updateCartBadge();           
+        });
 
     }
 
@@ -20,24 +24,13 @@ export default class ProductDetails {
         displayProduct(this.product);
     }
 
-
-    async addProductToCart() {
-        const itemsInCart = countItemsInCart();
-        setLocalStorage(`customer-cart-item${itemsInCart}`, this.product);
-        setLocalStorage('itemsInCart', itemsInCart + 1);
+    addProductToCart() {
+        const cartContents = getLocalStorage("cart") || [];
+        cartContents.push(this.product);
+        setLocalStorage("cart", cartContents);
+        setLocalStorage("itemsInCartCount", cartContents.length);
     }
 }
-
-function countItemsInCart() {
-    const current = getLocalStorage("itemsInCart");
-    if (getLocalStorage('itemsInCart') === null) {
-        setLocalStorage('itemsInCart', 0);
-        return 0;
-    }
-
-    return Number(current);
-}
-
 
 
 const brand = document.getElementById('productBrand');
