@@ -131,6 +131,28 @@ button {
   fill: gray;
 }
 
+.cart-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -13px;
+  right: -1px;
+
+  font-size: 6px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  background-color: #f0a868;
+  border-radius: 16px;
+  height: 10px;
+  width: 10px;
+}
+
 /* End cart icon styles */
 
 .mission {
