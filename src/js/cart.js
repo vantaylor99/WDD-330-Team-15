@@ -1,7 +1,8 @@
 import { getLocalStorage } from './utils.mjs';
+import { loadHeaderFooter } from './utils.mjs';
 
 function renderCartContents() {
-  const cartItems = getLocalStorage('customer-cart');
+  const cartItems = getLocalStorage('cart');
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector('.product-list').innerHTML = htmlItems.join('');
 }
@@ -26,3 +27,4 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+loadHeaderFooter();
