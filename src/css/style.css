@@ -101,13 +101,24 @@ p {
 
 button {
   padding: 0.5em 2em;
-  background-color: var(--secondary-color);
+  background-color: var(--tertiary-color);
   color: white;
   margin: auto;
   display: block;
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  border-radius: 1rem;
+  border: 3px solid var(--primary-color);
+  transition: background-color 250ms ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+a {
+  text-decoration: none;
 }
 
 .divider {
