@@ -1,3 +1,4 @@
+import { updateCartBadge } from './modules/cartCountBadge.mjs';
 import { getLocalStorage } from './utils.mjs';
 import { loadHeaderFooter } from './utils.mjs';
 
@@ -27,4 +28,4 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
-loadHeaderFooter();
+loadHeaderFooter(updateCartBadge);
