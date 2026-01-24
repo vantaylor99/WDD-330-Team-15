@@ -2,7 +2,7 @@ const itemsInCartCount = localStorage.getItem("itemsInCartCount");
 
 
 
-export default function updateCartBadge() {
+export function updateCartBadge() {
     document.addEventListener('DOMContentLoaded', updateCartBadge);
     const span = document.getElementById("cartBadge");
 
