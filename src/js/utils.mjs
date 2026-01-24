@@ -30,9 +30,9 @@ export function getParam(paramName) {
   return params.get(paramName);
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false){
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
 
-  if(clear) parentElement.innerHTML = '';
+  if (clear) parentElement.innerHTML = '';
 
   const htmlItems = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlItems.join(''));
@@ -55,7 +55,7 @@ async function loadTemplate(path) {
   return template
 }
 
-export async function loadHeaderFooter(callback){
+export async function loadHeaderFooter(callback) {
   const headerElement = document.getElementById("main-divider")
   const footerElement = document.getElementById("lower-divider")
 
@@ -64,4 +64,8 @@ export async function loadHeaderFooter(callback){
 
   renderWithTemplate(headerTemplate, headerElement, callback, null)
   renderWithTemplate(footerTemplate, footerElement)
-} 
+}
+
+export function capitalizeString(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

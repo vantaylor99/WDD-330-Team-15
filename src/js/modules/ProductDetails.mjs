@@ -15,7 +15,7 @@ export default class ProductDetails {
 
         document.getElementById("addToCart").addEventListener("click", () => {
             this.addProductToCart();
-            updateCartBadge();           
+            updateCartBadge();
         });
 
     }
@@ -46,7 +46,7 @@ export function displayProduct(product) {
     brand.textContent = `${product.Brand.Name}`;
     name.textContent = `${product.NameWithoutBrand}`;
 
-    image.setAttribute('src', product.Image);
+    image.setAttribute('src', product.Images.PrimaryExtraLarge);
     image.setAttribute('alt', `Image of the ${product.Name}`);
 
     price.textContent = `${product.ListPrice}`;
