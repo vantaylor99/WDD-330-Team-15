@@ -1,10 +1,11 @@
-const span = document.getElementById("cartBadge");
 const itemsInCartCount = localStorage.getItem("itemsInCartCount");
 
-document.addEventListener('DOMContentLoaded', updateCartBadge);
 
 
-export function updateCartBadge() {
+export default function updateCartBadge() {
+    document.addEventListener('DOMContentLoaded', updateCartBadge);
+    const span = document.getElementById("cartBadge");
+
     const count = localStorage.getItem("itemsInCartCount") || 0;
 
     if(count > 0){

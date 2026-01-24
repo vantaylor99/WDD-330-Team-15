@@ -1,3 +1,5 @@
+
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -36,3 +38,30 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlItems.join(''));
 }
 
+
+
+export function renderWithTemplate(template, parentElement, callback, data) {
+  const htmlItems = template;
+  parentElement.innerHTML = htmlItems
+
+  if (callback) {
+    callback(data);
+  }
+}
+
+async function loadTemplate(path) {
+  const result = await fetch(path);
+  const template = await result.text();
+  return template
+}
+
+export async function loadHeaderFooter(callback){
+  const headerElement = document.getElementById("main-divider")
+  const footerElement = document.getElementById("lower-divider")
+
+  const headerTemplate = await loadTemplate("../public/partials/header.html")
+  const footerTemplate = await loadTemplate("../public/partials/footer.html")
+
+  renderWithTemplate(headerTemplate, headerElement, callback, null)
+  renderWithTemplate(footerTemplate, footerElement)
+} 
