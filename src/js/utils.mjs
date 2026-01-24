@@ -59,8 +59,8 @@ export async function loadHeaderFooter(callback) {
   const headerElement = document.getElementById("main-divider")
   const footerElement = document.getElementById("lower-divider")
 
-  const headerTemplate = await loadTemplate("../public/partials/header.html")
-  const footerTemplate = await loadTemplate("../public/partials/footer.html")
+  const headerTemplate = await loadTemplate("/partials/header.html")
+  const footerTemplate = await loadTemplate("/partials/footer.html")
 
   renderWithTemplate(headerTemplate, headerElement, callback, null)
   renderWithTemplate(footerTemplate, footerElement)
