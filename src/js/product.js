@@ -1,3 +1,4 @@
+import { updateCartBadge } from './modules/cartCountBadge.mjs';
 import ProductData from './modules/ProductData.mjs';
 import ProductDetails from './modules/ProductDetails.mjs';
 import { getParam } from './utils.mjs';
@@ -13,4 +14,4 @@ document.addEventListener('DOMContentLoaded', () => {
   product.init();
 });
 
-loadHeaderFooter()
+loadHeaderFooter(updateCartBadge)

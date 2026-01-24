@@ -108,17 +108,15 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
-  border-radius: 1rem;
-  border: 3px solid var(--primary-color);
-  transition: background-color 250ms ease;
+  border: 3px solid var(--tertiary-color);
+  border-radius: 0.5rem;
+  transition: background-color 250ms ease,
+    border-radius 150ms ease;
 }
 
 button:hover {
-  background-color: var(--secondary-color);
-}
-
-a {
-  text-decoration: none;
+  background-color: #f0a868;
+  border-radius: 1rem;
 }
 
 .divider {
