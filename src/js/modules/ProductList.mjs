@@ -1,6 +1,7 @@
 import { renderListWithTemplate } from "../utils.mjs";
 
-function c(product, category) {
+
+function productCardTemplate(product) {
     return `<li class="product-card">
                 <a href="../product_pages/index.html?id=${product.Id}">
                 <img src="${product.Images.PrimaryExtraLarge}" alt="Image of the product '${product.Name}'">
