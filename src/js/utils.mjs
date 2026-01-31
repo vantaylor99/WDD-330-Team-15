@@ -1,3 +1,4 @@
+import { updateCartBadge } from "./modules/cartCountBadge.mjs";
 
 
 // wrapper for querySelector...returns matching element
@@ -56,6 +57,7 @@ async function loadTemplate(path) {
 }
 
 export async function loadHeaderFooter(callback) {
+  updateCartBadge();
   const headerElement = document.getElementById("main-divider")
   const footerElement = document.getElementById("lower-divider")
 

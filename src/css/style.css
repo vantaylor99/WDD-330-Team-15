@@ -99,7 +99,7 @@ p {
   color: var(--tertiary-color);
 }
 
-button {
+.checkout {
   padding: 0.5em 2em;
   background-color: var(--tertiary-color);
   color: white;
@@ -114,7 +114,21 @@ button {
     border-radius 150ms ease;
 }
 
-button:hover {
+.remove-item-button {
+  font-size: 0.7rem;
+  margin: 1rem auto;
+  transition: scale 200ms ease-in-out;
+  margin-bottom: 2rem;
+  border: none;
+  background-color: transparent;
+}
+
+.remove-item-button:hover {
+  scale: 1.3;
+
+}
+
+.checkout:hover {
   background-color: #f0a868;
   border-radius: 1rem;
 }
