@@ -28,7 +28,7 @@ export default class ProductDetails {
         const cartContents = getLocalStorage("cart") || [];
         cartContents.push(this.product);
         setLocalStorage("cart", cartContents);
-        setLocalStorage("itemsInCartCount", cartContents.length);
+        updateCartBadge();
     }
 }
 
