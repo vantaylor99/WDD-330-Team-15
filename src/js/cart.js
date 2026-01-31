@@ -27,5 +27,16 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+function calculateTotal() {
+  const cartItems = getLocalStorage('cart');
+  let total = 0
+  const totalSpan = document.getElementById('total');
+  cartItems.forEach(item => {
+    total = total += item.FinalPrice
+  });
+  totalSpan.innerHTML = `${total.toLocaleString("en-US", { style: "currency", currency: "USD" })}`;
+}
+
 renderCartContents();
+calculateTotal();
 loadHeaderFooter(updateCartBadge);
