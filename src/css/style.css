@@ -133,6 +133,29 @@ p {
   border-radius: 1rem;
 }
 
+.btn {
+  padding: 0.5em 2em;
+  background-color: var(--tertiary-color);
+  color: white;
+  margin: auto;
+  display: block;
+  border: 0;
+  font-size: var(--large-font);
+  cursor: pointer;
+  border: 3px solid var(--tertiary-color);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 250ms ease,
+    border-radius 150ms ease;
+}
+
+.btn:hover {
+  background-color: #f0a868;
+  border-radius: 1rem;
+}
+
+
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -145,6 +168,14 @@ p {
   position: relative;
   text-align: center;
 }
+
+.total-div {
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+
 
 .cart svg {
   width: 25px;

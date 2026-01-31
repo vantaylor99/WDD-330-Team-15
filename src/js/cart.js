@@ -31,21 +31,16 @@ function cartItemTemplate(item, index) {
   return newItem;
 }
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  const list = document.querySelector('.product-list');
-  list.addEventListener('click', (e) => {
-    const removeBtn = e.target.closest('.remove-item-button');
-    if (!removeBtn) return
-
-    const index = removeBtn.dataset.index
-    removeItemFromCartByIndex(index);
-    renderCartContents();
-    updateCartBadge();
-  })
-
-})
+function calculateTotal() {
+  const cartItems = getLocalStorage('cart');
+  let total = 0
+  const totalSpan = document.getElementById('total');
+  cartItems.forEach(item => {
+    total = total += item.FinalPrice
+  });
+  totalSpan.innerHTML = `${total.toLocaleString("en-US", { style: "currency", currency: "USD" })}`;
+}
 
 renderCartContents();
-loadHeaderFooter().then(updateCartBadge);
-
+calculateTotal();
+loadHeaderFooter(updateCartBadge);
