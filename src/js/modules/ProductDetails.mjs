@@ -1,4 +1,4 @@
-import { getLocalStorage, getParam, setLocalStorage } from "../utils.mjs";
+import { alertMessage, getLocalStorage, getParam, setLocalStorage } from "../utils.mjs";
 import { updateCartBadge } from "./cartCountBadge.mjs";
 
 export default class ProductDetails {
@@ -16,6 +16,7 @@ export default class ProductDetails {
         document.getElementById("addToCart").addEventListener("click", () => {
             this.addProductToCart();
             updateCartBadge();
+            alertMessage(`<div><strong>${this.product.NameWithoutBrand}</strong> successfully added to cart.</div>`)
         });
 
     }
@@ -54,5 +55,5 @@ export function displayProduct(product) {
     description.innerHTML = `${product.DescriptionHtmlSimple}`;
     button.dataset.id = product.Id;
 
-    button.dataset.category = getParam('category');
+    button.dataset.category = product.Category;
 }
