@@ -31,6 +31,21 @@ function cartItemTemplate(item, index) {
   return newItem;
 }
 
+document.querySelector('.product-list').addEventListener('click', (event) => {
+  const removeBtn = event.target.closest('.remove-item-button');
+
+  if (removeBtn) {
+    const index = removeBtn.dataset.index;
+
+    removeItemFromCartByIndex(index);
+
+    renderCartContents();
+    calculateTotal();
+    updateCartBadge();
+  }
+})
+
+
 function calculateTotal() {
   const cartItems = getLocalStorage('cart');
   let total = 0
