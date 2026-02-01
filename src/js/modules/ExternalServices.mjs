@@ -9,7 +9,7 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
+export default class ExternalServices {
 
   async findProductById(id) {
     const response = await fetch(`${baseURL}product/${id}`);
@@ -22,6 +22,19 @@ export default class ProductData {
     const response = await fetch(`${baseURL}products/search/${category} `);
     const data = await convertToJson(response);
     return data.Result;
+  }
+
+  async checkout(payload) {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+
+    const response = await fetch(`${baseURL}checkout`, options);
+    return await convertToJson(response);
   }
 
 }

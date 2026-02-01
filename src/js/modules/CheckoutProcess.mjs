@@ -1,4 +1,5 @@
 import { getLocalStorage } from "../utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 
 export default class CheckoutProcess {
@@ -10,12 +11,12 @@ export default class CheckoutProcess {
         this.tax = 0;
         this.itemSubtotal = 0;
         this.total = 0;
+        this.services = new ExternalServices();
     }
 
     init() {
         this.list = getLocalStorage(this.key)
         document.querySelector("#subtotal").textContent = `${this.calculateSubtotal().toLocaleString("en-US", { style: "currency", currency: "USD" })}`
-        this.zipInit()
     }
 
     zipInit() {
@@ -52,12 +53,52 @@ export default class CheckoutProcess {
     }
 
     calculateTotal() {
-        return this.subtotal + this.shipping;
+        return this.subtotal + this.shipping + this.tax;
+    }
+
+
+    packageItems(items) {
+        return items.map(item => {
+            return {
+                id: item.Id,
+                name: item.Name,
+                price: item.FinalPrice,
+                quantity: 1
+            }
+        });
+    }
+
+    async checkout(form) {
+        const formElement = document.querySelector(form);
+        const json = formDataToJSON(formElement);
+        json.orderDate = new Date();
+        json.total = this.total;
+        json.tax = this.tax;
+        json.shipping = this.shipping;
+        json.items = this.packageItems(this.list);
+
+        try {
+            const res = await this.services.checkout(json);
+            console.log(res);
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 
 
 
+}
 
+function formDataToJSON(formElement) {
+    const formData = new FormData(formElement),
+        convertedtoJSON = {};
+
+    formData.forEach(function (value, key) {
+        convertedtoJSON[key] = value;
+    });
+
+    return convertedtoJSON;
 }
 
 

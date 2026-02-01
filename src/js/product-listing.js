@@ -1,11 +1,11 @@
 import { getParam, loadHeaderFooter } from './utils.mjs';
 import { updateCartBadge } from './modules/cartCountBadge.mjs'
-import ProductData from './modules/ProductData.mjs';
+import ExternalServices from './modules/ExternalServices.mjs';
 import ProductList from './modules/ProductList.mjs';
 import { capitalizeString } from './utils.mjs';
 
 const category = getParam('category')
-const dataSource = new ProductData();
+const dataSource = new ExternalServices();
 const listElement = document.getElementById('productList');
 const categorySpan = document.getElementById('product-category-span');
 const indexOfDash = category.search('-');
