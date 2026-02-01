@@ -1,4 +1,4 @@
-import { getLocalStorage } from "../utils.mjs";
+import { alertMessage, getLocalStorage, setLocalStorage } from "../utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 
@@ -79,10 +79,15 @@ export default class CheckoutProcess {
 
         try {
             const res = await this.services.checkout(json);
-            console.log(res);
+            setLocalStorage("cart", [])
+            window.location.href = "../checkout/success.html"
+            console.log(res)
         }
         catch (error) {
             console.log(error)
+            if (error.message.expiration === 'Card expired') {
+                alertMessage(error.message.expiration)
+            }
         }
     }
 
@@ -101,5 +106,18 @@ function formDataToJSON(formElement) {
     return convertedtoJSON;
 }
 
-
+/* 
+{name: 'servicesError', message: {…}}
+message
+:
+expiration
+:
+"Card expired"
+[[Prototype]]
+:
+Object
+name
+:
+"servicesError"
+*/
 

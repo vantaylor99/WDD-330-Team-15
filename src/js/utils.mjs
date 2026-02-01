@@ -71,3 +71,25 @@ export async function loadHeaderFooter(callback) {
 export function capitalizeString(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export function alertMessage(message) {
+  const alert = document.createElement('div');
+  const exitAlert = document.createElement('p')
+  alert.innerHTML = `${message}`
+  alert.classList.add('alert');
+  exitAlert.textContent = '✕'
+  exitAlert.classList.add('exit-alert')
+  alert.appendChild(exitAlert);
+
+  exitAlert.addEventListener('click', function (event) {
+    if (event) {
+      alert.remove();
+    }
+  })
+
+
+
+  const main = document.querySelector('main');
+  main.prepend(alert)
+
+}
